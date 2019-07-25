@@ -1,0 +1,84 @@
+
+{% include 'head.html' %}
+
+
+
+        <main role="main">
+          <div class="row">
+            <div class="col-lg-10 mx-auto">
+              <div class="col-sm-8 mx-auto">
+              <div class="alert alert-info" style="background-color: whitesmoke">
+                <h2>{{ title1 }}</h2>
+                <p> {{ bodyText1 }} </p>
+
+                <div class="btn-group btn-group-toggle">
+                    <a href="#" class="btn btn-secondary" role="button">View</a>
+                    <a href="{{ url_for('dockerContDeployLocal') }}" class="btn btn-outline-secondary" role="button">Deploy</a>
+                    <a href="dummy" class="btn btn-outline-secondary" role="button">Radio</a>
+                </div>
+
+
+              </div>
+            </div>
+
+
+                  <div class="col-sm-8 mx-auto">
+                    <div class="alert alert-info" style="background-color: whitesmoke">
+
+                      <h3>{{contLocation}}</h3>
+                      <table class="table" cellpadding="5" width=80%>
+                        <thead class="thead-light">
+                        <tr><th scope="col"><b>Name<b></th><th scope="col">Status</th><th scope="col">Action</th></tr>
+                        </thead>
+                      {% for entry in contLocal %}
+                      <tr><td><b>{{ entry }}<b></td><td>{{ contLocal[entry] }}</td><td><a href="http://192.168.2.93:5010/dockerContStopLocal?container={{entry}}">terminate</a></td></tr>
+                      {%endfor%}
+
+                      </table>
+
+                    </div>
+                  </div>
+
+                  <div class="col-sm-8 mx-auto">
+                    <div class="alert alert-info" style="background-color: whitesmoke">
+
+                      <h3>Public cloud</h3>
+                      <table class="table" cellpadding="5" width=80%>
+                        <thead class="thead-light">
+                        <tr><th scope="col"><b>Name<b></th><th scope="col">Location</th><th scope="col">Status</th><th scope="col">Action</th></tr>
+                        </thead>
+                      {% for entry in contPub %}
+                        <tr><td>{{ entry[0] }}</td><td>{{ entry[1] }}</td><td>{{ entry[2] }}</td><td><a href="http://192.168.2.93:5010/dockerContStart?cont={{entry[0]}}&location=public">Start</a></td></tr>
+                      {%endfor%}
+
+                      </table>
+
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+
+
+
+          </main>
+
+
+
+      <!-- Bootstrap core JavaScript
+      ================================================== -->
+      <!-- Placed at the end of the document so the pages load faster -->
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+      <script>window.jQuery || document.write('<script src={{ url_for("static", filename="assets/js/vendor/jquery-slim.min.js") }}><\/script>')</script>
+      <script src={{ url_for('static', filename='assets/js/vendor/popper.min.js') }}></script>
+      <script src={{ url_for('static', filename='dist/js/bootstrap.min.js') }}></script>
+      <!-- Icons -->
+      <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+      <script>
+        feather.replace()
+      </script>
+
+
+  </body>
+  </html>

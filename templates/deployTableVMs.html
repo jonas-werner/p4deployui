@@ -1,0 +1,99 @@
+
+{% include 'head.html' %}
+
+
+
+        <main role="main">
+          <div class="row">
+            <div class="col-lg-10 mx-auto">
+              <div class="col-sm-8 mx-auto">
+              <div class="alert alert-info" style="background-color: whitesmoke">
+                <h2>{{ title1 }}</h2>
+                <p> {{ bodyText1 }} </p>
+
+                <div class="btn-group btn-group-toggle">
+                    <a href="#" class="btn btn-secondary" role="button" active>View</a>
+                    <a href="{{ url_for('vagrantVmDeploy') }}" class="btn btn-outline-secondary" role="button">Deploy</a>
+                    <a href="dummy" class="btn btn-outline-secondary" role="button">Radio</a>
+                </div>
+
+
+              </div>
+            </div>
+
+
+                  <div class="col-sm-8 mx-auto">
+                    <div class="alert alert-info" style="background-color: whitesmoke">
+
+                      <h3>Currently active VMs</h3>
+                      <table class="table" cellpadding="5" width=80%>
+                        <thead class="thead-light">
+                        <tr><th scope="col"><b>Name<b></th></tr>
+                        </thead>
+                          {% for entry in runningvms %}
+                          <tr><td>{{ entry }}</td></tr>
+                          {%endfor%}
+                      </table>
+
+                    </div>
+                  </div>
+
+                  <div class="col-sm-8 mx-auto">
+                    <div class="alert alert-info" style="background-color: whitesmoke">
+
+                      <h3>Vagrant Boxes available locally</h3>
+                      <table class="table" cellpadding="5" width=80%>
+                        <thead class="thead-light">
+                        <tr><th scope="col"><b>Name<b></th></tr>
+                        </thead>
+                          {% for entry in boxes %}
+                          <tr><td>{{ entry }}</td></tr>
+                          {%endfor%}
+                      </table>
+
+                    </div>
+                  </div>
+
+                  <div class="col-sm-8 mx-auto">
+                    <div class="alert alert-info" style="background-color: whitesmoke">
+
+                      <h3>VMs on system</h3>
+                      <table class="table" cellpadding="5" width=80%>
+                        <thead class="thead-light">
+                        <tr><th scope="col"><b>Name<b></th></tr>
+                        </thead>
+                          {% for entry in vms %}
+                          <tr><td>{{ entry }}</td></tr>
+                          {%endfor%}
+                      </table>
+
+                    </div>
+                  </div>
+
+
+                </div>
+              </div>
+
+
+
+
+          </main>
+
+
+
+      <!-- Bootstrap core JavaScript
+      ================================================== -->
+      <!-- Placed at the end of the document so the pages load faster -->
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+      <script>window.jQuery || document.write('<script src={{ url_for("static", filename="assets/js/vendor/jquery-slim.min.js") }}><\/script>')</script>
+      <script src={{ url_for('static', filename='assets/js/vendor/popper.min.js') }}></script>
+      <script src={{ url_for('static', filename='dist/js/bootstrap.min.js') }}></script>
+      <!-- Icons -->
+      <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+      <script>
+        feather.replace()
+      </script>
+
+
+  </body>
+  </html>
